@@ -1,0 +1,112 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .row {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+    gap: 0.5rem;
+  }
+  
+  .row-label {
+    width: 60px;
+    text-align: right;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  
+  .cards-container {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap; /* Permet aux cartes de passer à la ligne si nécessaire */
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .card-container {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    width: calc(25% - 0.5rem); /* Par défaut 4 cartes par ligne avec gap */
+    min-width: 80px; /* Taille minimum pour éviter des cartes trop petites */
+  }
+  
+  .card {
+    height: 6em;
+    border-radius: 10px;
+    display: block;
+    width: 100%;
+    object-fit: contain; /* Garde les proportions de l'image */
+  }
+  
+  .used {
+    filter: grayscale(1);
+  }
+  
+  .diagonal-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 90000;
+  }
+  
+  .diagonal-line::after {
+    content: '';
+    position: absolute;
+    width: 142%;
+    height: 3px;
+    background-color: red;
+    transform: rotate(45deg);
+    transform-origin: center;
+  }
+  
+  /* Media Queries pour différentes tailles d'écran */
+  @media (max-width: 768px) {
+    .row {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+    }
+  
+    .row-label {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+  
+    .cards-container {
+      justify-content: center;
+    }
+  
+    .card-container {
+      width: calc(50% - 0.5rem); /* 2 cartes par ligne sur tablette */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #root {
+      padding: 0.5rem;
+    }
+  
+    .card-container {
+      width: calc(50% - 0.25rem); /* 2 cartes par ligne sur mobile */
+    }
+  
+    .cards-container {
+      gap: 0.25rem;
+    }
+  
+    .card {
+      height: 5em; /* Cartes légèrement plus petites sur mobile */
+    }
+  }
